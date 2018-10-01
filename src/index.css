@@ -18,7 +18,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   color: rgba(255, 255, 255, 0.7);
-  background: #2a8cc3;
+  background: #3c4556;
   height: 100%;
 }
 
@@ -26,5 +26,12 @@ body {
   font-family: "SourceCodePro";
   src: local("SourceCodePro"),
     url(./fonts/SourceCodePro-Regular.ttf)
+      format("truetype");
+}
+
+@font-face {
+  font-family: "Permanent Marker";
+  src: local("Permanent Marker"),
+    url(./fonts/PermanentMarker-Regular.ttf)
       format("truetype");
 }

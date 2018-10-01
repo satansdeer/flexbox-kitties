@@ -7,6 +7,8 @@
   margin: 0;
   text-transform: uppercase;
   font-size: 28px;
+  font-family: "Permanent Marker";
+  color: #bd93f9;
 }
 
 .sidebar {
@@ -85,7 +87,7 @@ pre {
 }
 
 .background {
-  background-color: #b9684b;
+  background-color: #59667e;
   border-radius: 0 0 0 10px;
   display: flex;
   height: 100%;
@@ -110,15 +112,15 @@ pre {
 }
 
 .green .cat-bg {
-  background-color: green;
+  background-color: #50fa7b;
 }
 
 .yellow .cat-bg {
-  background-color: yellow;
+  background-color: #f1fa8c;
 }
 
 .red .cat-bg {
-  background-color: red;
+  background-color: #ff5555;
 }
 
 .litterbox {
@@ -131,15 +133,15 @@ pre {
 }
 
 .litterbox.green {
-  background-color: green;
+  background-color: #50fa7b;
 }
 
 .litterbox.yellow {
-  background-color: yellow;
+  background-color: #f1fa8c;
 }
 
 .litterbox.red {
-  background-color: red;
+  background-color: #ff5555;
 }
 
 @keyframes pulse {
