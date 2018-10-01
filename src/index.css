@@ -5,7 +5,9 @@ html {
   height: 100%;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
@@ -15,10 +17,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  background: #2a8cc3;
   height: 100%;
 }
 
 @font-face {
   font-family: "SourceCodePro";
-  src: local('SourceCodePro'), url(./fonts/SourceCodePro-Regular.ttf) format('truetype');
+  src: local("SourceCodePro"),
+    url(./fonts/SourceCodePro-Regular.ttf)
+      format("truetype");
 }

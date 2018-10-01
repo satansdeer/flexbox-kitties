@@ -2,7 +2,7 @@ import * as React from "react";
 import "./App.css";
 import { levels } from "./levels";
 
-const level = 16;
+const level = 1;
 
 interface IAppState {
   roomStyle: string;
@@ -44,6 +44,7 @@ class App extends React.Component<{}, IAppState> {
         `}
         </style>
         <div className="sidebar">
+          <h1 className="title">Flexbox kitties</h1>
           <div
             dangerouslySetInnerHTML={{
               __html: levels[level].instructions.en
