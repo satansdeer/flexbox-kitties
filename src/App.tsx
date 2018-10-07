@@ -1,11 +1,12 @@
 import * as React from "react";
 import "./App.css";
+import { LevelMarker } from "./LevelMarker";
 import { levels } from "./levels";
-
-const level = 1;
 
 interface IAppState {
   roomStyle: string;
+  level: number;
+  tooltipOpened: boolean;
 }
 
 function getColor(value: string) {
@@ -29,9 +30,15 @@ function styleString(value: { [key: string]: string }) {
 }
 
 class App extends React.Component<{}, IAppState> {
-  public state = { roomStyle: "" };
+  public state = {
+    level: 1,
+    roomStyle: "",
+    tooltipOpened: false
+  };
 
   public render() {
+    const { level } = this.state;
+
     return (
       <>
         <style>
@@ -44,7 +51,48 @@ class App extends React.Component<{}, IAppState> {
         `}
         </style>
         <div className="sidebar">
-          <h1 className="title">Flexbox kitties</h1>
+          <div className="header">
+            <h1 className="title">Flexbox kitties</h1>
+            <div className="level-counter">
+              <button
+                className="arrow left"
+                onClick={this.togglePrevLevel}
+              >
+                ◀
+              </button>
+              <div
+                className="level-indicator"
+                onClick={this.toggleLevelsTooltip}
+              >
+                Level {this.state.level + 1} of{" "}
+                {levels.length}
+                <span className="caret">▾</span>
+              </div>
+              <button
+                className="arrow right"
+                onClick={this.toggleNextLevel}
+              >
+                ▶
+              </button>
+              {this.state.tooltipOpened && (
+                <div className="levels-wrapper">
+                  <div className="levels">
+                    {levels.map((l, i) => (
+                      <LevelMarker
+                        key={i}
+                        level={i}
+                        currentLevel={level}
+                        onClick={this.selectLevel}
+                      />
+                    ))}
+                  </div>
+                  <button className="label-reset">
+                    Reset
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
           <div
             dangerouslySetInnerHTML={{
               __html: levels[level].instructions.en
@@ -78,7 +126,7 @@ class App extends React.Component<{}, IAppState> {
             {levels[level].board.split("").map(color => {
               return (
                 <div
-                  key={color}
+                  key={`${color}_${level}`}
                   className={`cat ${getColor(color)}`}
                 >
                   <div className={`cat-bg`} />
@@ -90,7 +138,7 @@ class App extends React.Component<{}, IAppState> {
             {levels[level].board.split("").map(color => {
               return (
                 <div
-                  key={color}
+                  key={`${color}_${level}`}
                   className={`litterbox ${getColor(color)}`}
                 />
               );
@@ -100,6 +148,30 @@ class App extends React.Component<{}, IAppState> {
       </>
     );
   }
+
+  private selectLevel = (level: number) => {
+    this.setState({
+      level
+    });
+  };
+
+  private toggleNextLevel = () => {
+    this.setState({
+      level: this.state.level + 1
+    });
+  };
+
+  private togglePrevLevel = () => {
+    this.setState({
+      level: this.state.level - 1
+    });
+  };
+
+  private toggleLevelsTooltip = () => {
+    this.setState({
+      tooltipOpened: !this.state.tooltipOpened
+    });
+  };
 
   private updateStyle = (
     e: React.ChangeEvent<HTMLTextAreaElement>
